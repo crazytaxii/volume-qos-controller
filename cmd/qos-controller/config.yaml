@@ -1,0 +1,15 @@
+leaderElection:
+  leaderElect: false # single instance
+  leaseDuration: 30s
+  renewDeadline: 15s
+  resyncPeriod: 5s
+  resourceName: qos-controller-leader-lock
+  resourceLock: endpointsleases
+  resourceNamespace: default
+controllerConfig:
+  workers: 8
+  cephRBD:
+    provisioner: rbd.csi.ceph.com
+    monitors: ceph_monitor_ip1:6789,ceph_monitor_ip2:6789,ceph_monitor_ip3:6789
+    user: admin
+    key: ceph_user_key
