@@ -39,7 +39,7 @@ $ ceph auth get client.admin
         storage: 5Gi
     ```
 
-1. Update PVC with annotation of QoS rule, or just create the PVC with it:
+1. Update PVC with annotation of QoS rule, or just create the PVC with it
 
     ```bash
     $ kubectl patch pvc datavol -n demo --type=merge -p '{"metadata":{"annotations": {"pv.kubernetes.io/qos-bps-limit": "10M"}}}'

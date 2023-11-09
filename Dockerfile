@@ -1,4 +1,4 @@
-FROM quay.io/ceph/ceph:v16 AS builder
+FROM quay.io/ceph/ceph:v17 AS builder
 ARG GOPROXY
 ARG VERSION
 ARG GOARCH
@@ -18,6 +18,6 @@ WORKDIR /go/src/app
 COPY . .
 RUN go build -o dist/qos-controller -a -ldflags "-X 'main.version=${VERSION}'" ./cmd/qos-controller
 
-FROM quay.io/ceph/ceph:v16
+FROM quay.io/ceph/ceph:v17
 COPY --from=builder /go/src/app/dist/qos-controller /usr/local/bin/qos-controller
 ENTRYPOINT [ "/usr/local/bin/qos-controller" ]

@@ -4,7 +4,7 @@ TAG ?= latest
 OS ?= linux
 ARCH ?= amd64
 GOPROXY ?= https://goproxy.cn,direct
-GOVERSION ?= 1.20.3
+GOVERSION ?= 1.20.11
 ORG ?= crazytaxii
 TARGET_DIR ?= dist
 
