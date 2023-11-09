@@ -2,7 +2,6 @@ package ceph
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 
@@ -102,7 +101,7 @@ func NewCephRBDManager(cfg *RBDManagerConfig) (*CephRBDManager, error) {
 	}
 
 	// Write user key to a temporary file.
-	tmpfile, err := ioutil.TempFile(tmpKeyFileLocation, tmpKeyFileNamePrefix)
+	tmpfile, err := os.CreateTemp(tmpKeyFileLocation, tmpKeyFileNamePrefix)
 	if err != nil {
 		return nil, fmt.Errorf("creating a temporary keyfile failed: %w", err)
 	}

@@ -40,9 +40,6 @@ type (
 		CephRBD      *ceph.RBDManagerConfig `json:"ceph_rbd" yaml:"cephRBD"`
 	}
 	VolumeQoSController struct {
-		// kubeClient is a standard kubernetes clientset
-		kubeClient kubernetes.Interface
-
 		kubeInformerFactory kubeinformers.SharedInformerFactory
 
 		pvcInformer coreinformers.PersistentVolumeClaimInformer
