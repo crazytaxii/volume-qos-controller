@@ -1,13 +1,13 @@
 FROM quay.io/ceph/ceph:v17 AS builder
 ARG GOPROXY
 ARG VERSION
-ARG GOARCH
 ARG GOVERSION
 ENV GOPROXY=${GOPROXY} \
     GOROOT=/usr/local/go
 
 RUN mkdir -p ${GOROOT} && \
-    curl https://storage.googleapis.com/golang/go${GOVERSION}.linux-${GOARCH}.tar.gz | tar xzf - -C ${GOROOT} --strip-components=1
+    ARCH=$(uname -m|sed 's|x86_64|amd64|'|sed 's|aarch64|arm64|') && \
+    curl https://storage.googleapis.com/golang/go${GOVERSION}.linux-${ARCH}.tar.gz | tar xzf - -C ${GOROOT} --strip-components=1
 RUN ${GOROOT}/bin/go version && \
     ${GOROOT}/bin/go env
 RUN dnf -y install librados-devel librbd-devel gcc
